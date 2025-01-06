@@ -3,8 +3,9 @@ import { theme } from "../theme";
 
 type Props = {
   name: string;
+  isCompleted?: boolean;
 };
-const ShoppingListItem = ({ name }: Props) => {
+const ShoppingListItem = ({ name, isCompleted }: Props) => {
   const handleDelete = () => {
     Alert.alert(
       `Are you sure you want to delete ${name}?`,
@@ -18,9 +19,34 @@ const ShoppingListItem = ({ name }: Props) => {
     );
   };
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>{name}</Text>
-      <TouchableOpacity style={styles.button} onPress={handleDelete}>
+    <View
+      style={[
+        styles.itemContainer,
+        isCompleted && {
+          backgroundColor: theme.colorLightGrey,
+          borderBottomColor: theme.colorLightGrey,
+        },
+      ]}
+    >
+      <Text
+        style={[
+          styles.itemText,
+          isCompleted && {
+            textDecorationLine: "line-through",
+            textDecorationColor: theme.colorGrey,
+            color: theme.colorGrey,
+          },
+        ]}
+      >
+        {name}
+      </Text>
+      <TouchableOpacity
+        style={[
+          styles.button,
+          isCompleted ? styles.completedButton : undefined,
+        ]}
+        onPress={handleDelete}
+      >
         <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
     </View>
@@ -51,6 +77,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "uppercase",
     letterSpacing: 1,
+  },
+  completedButton: {
+    backgroundColor: theme.colorGrey,
   },
 });
 
