@@ -66,20 +66,6 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     fontSize: 18,
   },
-  button: {
-    backgroundColor: theme.colorBlack,
-    padding: 8,
-    borderRadius: 6,
-  },
-  buttonText: {
-    color: theme.colorWhite,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-  },
-  completedButton: {
-    backgroundColor: theme.colorGrey,
-  },
 });
 
 export default ShoppingListItem;
